@@ -7,6 +7,13 @@ Model training is described through two jupyter notebooks based on the use cases
 * `train_sentiment.ipynb` - Describes how a transformer can be trained to classify customer reviews. Products of this training are used in the deployment section
 * `train_sms_spam.ipynb` - Investigates sms spam classification use case. It is not as documented as the sentiment analysis and is used only to investigate SMS spam classification feasibility.
 
+Before running the notebooks, please prepare the dev environment by executing the following commands:
+* `conda create -n text-classification python=3.8`
+* `conda activate text-classification`
+* `pip install -r requirements/requirements_service.txt`
+* `pip install ipykernel ipywidgets matplotlib`
+* `pip install -e .`
+
 ## Deployment 🚗
 The support code for sentiment classification is released as a docker image, whereas the model binaries are mounted on runtime, which ensures that containers are slim and flexible. Three core components are: Communication, Classification Service, Web App.
 
@@ -20,6 +27,6 @@ The classification service container receives gRPC calls, invokes the classifica
 In our case, UI is a simple Streamlit application. "Streamlit is an open-source Python library that makes it easy to create and share beautiful, custom web apps for machine learning and data science." [\[1\]](https://docs.streamlit.io/)
 
 ### How to deploy the model?
-* `make service`
-* `make webapp`
-* `make up`
+`make service`
+`make webapp`
+`make up`
