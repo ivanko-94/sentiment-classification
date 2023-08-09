@@ -15,6 +15,7 @@ There are multiple benefits to training a transformer-based classifier using Set
 Two following figures show how the performance of this FSL method scales with the number of samples. Decent performance can be reached with very few samples per class.
 ![Performance of the sentiment classification model vs number of training samples](https://github.com/ivanko-94/sentiment-classification/blob/sentiment-classification-service/figures/sentiment-performance-curve.png)
 ![Performance of the SMS classification model vs number of training samples](https://github.com/ivanko-94/sentiment-classification/blob/sentiment-classification-service/figures/sms-performance-curve.png)
+
 To further improve the sentiment model, [pre-trained roBERTa model](https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment) is used. It was trained on a similar task (Twitter sentiment analysis). This allows us to achieve excellent performance (accuracy ~0.9) with only 4 samples of each class (8 in total).
 
 # Demonstrating Functionality
