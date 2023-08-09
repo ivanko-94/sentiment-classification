@@ -1,0 +1,37 @@
+FROM python:3.8-slim
+
+WORKDIR /service
+
+# Packages
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    curl \
+    software-properties-common \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+
+RUN python -m pip install --upgrade pip
+
+# install requirements
+COPY requirements/requirements_service.txt requirements_service.txt
+RUN pip install --no-cache-dir -r requirements_service.txt
+
+# gRPC call code
+COPY generated generated
+
+# copy src code
+COPY text_classification text_classification
+
+# install self
+COPY setup.py setup.py
+RUN pip install --no-cache-dir --no-deps -e .
+
+# copy service starter
+COPY run_service.py run_service.py
+
+# used for gRPC communication
+EXPOSE 9090
+
+HEALTHCHECK  --start-period=20s --timeout=3s --interval=10s CMD ls -lah start_flag
+CMD ["python", "-u", "run_service.py"]
