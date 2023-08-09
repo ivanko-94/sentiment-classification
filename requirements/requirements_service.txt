@@ -1,0 +1,5 @@
+safetensors==0.3.1
+setfit==0.7.0
+grpcio==1.56.2
+protobuf==4.23.4
+cached_property==1.5.2
