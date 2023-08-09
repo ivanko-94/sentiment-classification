@@ -1,0 +1,7 @@
+.dataset/SetFit___sent_eval-cr filter=lfs diff=lfs merge=lfs -text
+.dataset/downloads filter=lfs diff=lfs merge=lfs -text
+.pre-trained-models/models--sentence-transformers--paraphrase-mpnet-base-v2/* filter=lfs diff=lfs merge=lfs -text
+.pre-trained-models/sentence-transformers_paraphrase-mpnet-base-v2/* filter=lfs diff=lfs merge=lfs -text
+.pre-trained-models/cardiffnlp_twitter-roberta-base-sentiment/* filter=lfs diff=lfs merge=lfs -text
+.pre-trained-models/models--cardiffnlp--twitter-roberta-base-sentiment/* filter=lfs diff=lfs merge=lfs -text
+.trained-models/cardiffnlp/twitter-roberta-base-sentiment/SetFit/SentEval-CR/* filter=lfs diff=lfs merge=lfs -text

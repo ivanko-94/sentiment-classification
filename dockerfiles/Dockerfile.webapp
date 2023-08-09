@@ -1,0 +1,31 @@
+FROM python:3.8-slim
+
+WORKDIR /web-app
+
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    curl \
+    software-properties-common \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN python -m pip install --upgrade pip
+
+# requirements
+COPY requirements/requirements_webapp.txt requirements_webapp.txt
+RUN pip3 install -r requirements_webapp.txt
+
+# gRPC call code
+COPY generated generated
+
+# source code
+COPY run_webapp.py run_webapp.py
+
+# user-UI communication
+EXPOSE 8501
+
+# UI-service communication
+EXPOSE 9090
+
+HEALTHCHECK  --start-period=20s --timeout=3s --interval=10s CMD curl --fail http://localhost:8501/_stcore/health
+
+ENTRYPOINT ["streamlit", "run", "run_webapp.py", "--server.port=8501"]
