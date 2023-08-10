@@ -17,7 +17,7 @@ As a demonstration of sentiment classification, we can use [SentEval-CR](https:/
 
 # Develop an ML Model
 
-More details about model development can be found in two `.ipynb` notebooks, which are checked in. For this task, [SetFit](https://huggingface.co/blog/setfit) is a robust and reliable mechanism that trains transformer models using only a few examples.
+Training code can be found in two `.ipynb` notebooks, which are checked in. For this task, we use [SetFit](https://huggingface.co/blog/setfit), a robust and reliable mechanism that trains transformer models using only a few examples.
 
 There are multiple benefits to training a transformer-based classifier using SetFit.
 
@@ -25,7 +25,7 @@ There are multiple benefits to training a transformer-based classifier using Set
 
 * Training a model using SetFit and FSL requires little compute infrastructure and can be completed quickly compared to traditional model training. As it shortens the development cycles, and increases response to data shifts, or the necessity to adapt the model to new tasks, SetFit is ideal for prototyping and R&D.
 
-* images FSL approach does not work well only with text. As contrastive learning is a general concept, one can easily use [transformers for images](https://huggingface.co/sentence-transformers/clip-ViT-B-32).
+* FSL approach does not work well only with text, but also images. As contrastive learning is a general concept, one can easily use [transformers for images](https://huggingface.co/sentence-transformers/clip-ViT-B-32).
 
 Two following figures show how the performance of this FSL method scales with the number of samples. Decent performance can be reached with very few samples per class.
 
@@ -47,6 +47,6 @@ Once the model is trained, it can be integrated into its environment. Instead of
 
 Web App is written as a simple [Streamlit](https://streamlit.io/) app. Through its simplicity, Streamlit shifts the focus to ML development and not UI design.
 
-Classification container is released **without** model weights. This decision is to make the container as slim as possible and flexible to add new models or efficiently replace model weights. Instead, the folder containing the weights is mounted to the container, as specified in the [docker compose](https://github.com/ivanko-94/sentiment-classification/blob/sentiment-classification-service/docker-compose.yml#L21).
+Classification container is released **without** model weights. This decision is to make the image as slim as possible and flexible to adding new models or efficiently replacing model weights. Instead, the folder containing the weights is mounted to the container, as specified in the [docker compose](https://github.com/ivanko-94/sentiment-classification/blob/sentiment-classification-service/docker-compose.yml#L21).
 
 Communication between docker containers is achieved by using [rpc calls](https://github.com/ivanko-94/sentiment-classification/blob/sentiment-classification-service/proto/text_classification_service.proto#L8). Given that generating code from `.proto` files relies on `grpcio.tools`, which are poorly supported on Mac M1 chips, generated code is checked in. To regenerate the code, please run `make generated`
