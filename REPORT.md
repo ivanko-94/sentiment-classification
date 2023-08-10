@@ -42,10 +42,11 @@ SMS spam classification task was more straightforward, and the model was able to
 
 # Demonstrating Functionality
 
-Once the model is trained, it can be integrated into its environment. Instead of invoking it using a simple script, one can make a web app. The block schema below describes the system design.
-
+Once the model is trained, it can be integrated into its environment. Instead of invoking it using a simple script, one can make a web app. The block schema below describes the system design. Each component is a separate entity, released as a docker image. 
 ![System Block Diagram](https://github.com/ivanko-94/sentiment-classification/blob/sentiment-classification-service/figures/sys-design.png)
 
-Each component is a separate entity, released as a docker image. Classification container is released **without** model weights. This decision is to make the container as slim as possible and flexible to add new models or efficiently replace model weights. Instead, the folder containing the weights is mounted to the container, as specified in the [docker compose](https://github.com/ivanko-94/sentiment-classification/blob/sentiment-classification-service/docker-compose.yml#L21).
+Web App is written as a simple [Streamlit](https://streamlit.io/) app. Through its simplicity, Streamlit shifts the focus to ML development and not UI design.
+
+Classification container is released **without** model weights. This decision is to make the container as slim as possible and flexible to add new models or efficiently replace model weights. Instead, the folder containing the weights is mounted to the container, as specified in the [docker compose](https://github.com/ivanko-94/sentiment-classification/blob/sentiment-classification-service/docker-compose.yml#L21).
 
 Communication between docker containers is achieved by using [rpc calls](https://github.com/ivanko-94/sentiment-classification/blob/sentiment-classification-service/proto/text_classification_service.proto#L8). Given that generating code from `.proto` files relies on `grpcio.tools`, which are poorly supported on Mac M1 chips, generated code is checked in. To regenerate the code, please run `make generated`
