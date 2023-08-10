@@ -11,13 +11,13 @@
 
 # Text Classification Problem
 
-As a demonstration of sentiment classification, we can use [SentEval-CR](https://huggingface.co/datasets/SetFit/SentEval-CR) dataset from huggingface. As described in the [original paper](https://dl.acm.org/doi/10.1145/1014052.1014073), this dataset contains customer reviews in the e-commerce domain. The test split was created by randomly sampling 20% of the original data (753 samples), and the train split is the remaining 80% (3012 samples). Upon investigating class balance, we can observe that positive reviews dominate with roughly a 2:1 ratio, equally spanning across test and train subsets. This dataset faithfully describes a real-world text classification use case. For more detailed information about how this dataset was used, please refer to: `train_sentiment.ipynb`. Furthermore, out of curiosity, SMS spam classification is investigated, by developing a model to classify SMS messages. The dataset can be found on the [Hugging Face website](https://huggingface.co/datasets/sms_spam), and more details are contained in the `train_sms_spam.ipynb`.
+As a demonstration of sentiment classification, I used [SentEval-CR](https://huggingface.co/datasets/SetFit/SentEval-CR) dataset from huggingface. As described in the [original paper](https://dl.acm.org/doi/10.1145/1014052.1014073), this dataset contains customer reviews in the e-commerce domain. The test split was created by randomly sampling 20% of the original data (753 samples), and the train split is the remaining 80% (3012 samples). Upon investigating class balance, one can observe that positive reviews dominate with roughly a 2:1 ratio, equally spanning across test and train subsets. This dataset faithfully describes a real-world text classification use case. For more detailed information about how this dataset was used, please refer to: `train_sentiment.ipynb`. Furthermore, out of curiosity, SMS spam classification is investigated, by developing a model to classify SMS messages. The dataset can be found on the [Hugging Face website](https://huggingface.co/datasets/sms_spam), and more details are contained in the `train_sms_spam.ipynb`.
 
   
 
 # Develop an ML Model
 
-Training code can be found in two `.ipynb` notebooks, which are checked in. For this task, we use [SetFit](https://huggingface.co/blog/setfit), a robust and reliable mechanism that trains transformer models using only a few examples.
+Training code can be found in two `.ipynb` notebooks, which are checked in. For this task, I used [SetFit](https://huggingface.co/blog/setfit), a robust and reliable mechanism that trains transformer models using only a few examples.
 
 There are multiple benefits to training a transformer-based classifier using SetFit.
 
