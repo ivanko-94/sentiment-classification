@@ -36,3 +36,7 @@ In our case, UI is a simple Streamlit application. "Streamlit is an open-source 
 After successfully building Docker images for [service](https://github.com/ivanko-94/sentiment-classification/blob/main/Makefile#L15) and [web app](https://github.com/ivanko-94/sentiment-classification/blob/main/Makefile#L9):
 * `make up` - will start both containers
 * open `http://localhost:8501` and try to classify customer reviews.
+
+Once docker containers successfully start, the application will look like the screenshot below.
+
+![Web App screenshot](https://github.com/ivanko-94/sentiment-classification/blob/sentiment-classification-service/figures/app_screenshot.png)
