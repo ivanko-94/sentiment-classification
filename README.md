@@ -1,10 +1,10 @@
-This repository illustrates how [sentiment classification](https://huggingface.co/datasets/SetFit/SentEval-CR) can reach an accuracy of ~0.9 using as little as 4 examples per class. To achieve this, we utilise a few-shot-learning approach from [SetFit](https://huggingface.co/blog/setfit) and leverage a pre-trained[roBEARTa](https://arxiv.org/abs/1907.11692) model [from Hugging Face 🤗]((https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment)). To enable user interaction, we built a simple web app. Furthermore, both components are run as docker images, which communicate using gRPC calls.
+This repository illustrates how [sentiment classification](https://huggingface.co/datasets/SetFit/SentEval-CR) can reach an accuracy of ~0.9 using as little as 4 examples per class. To achieve this, we utilise a few-shot-learning approach from [SetFit](https://huggingface.co/blog/setfit) and leverage a pre-trained [roBEARTa](https://arxiv.org/abs/1907.11692) model [from Hugging Face 🤗]((https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment)). To enable user interaction, we built a simple web app. Furthermore, both components are run as docker images, which communicate using gRPC calls.
 
 Artifacts are checked-in in: `.dataset`, `.pre-trained-models`, `.trained-models` folders.
 
 There are two entities:
 * Training a sentiment classification transformer model using SetFit 🤗
-* Deploying a trained model as a Docker image; building a simple web app and enabling communication through gRPC interface.
+* Deploying a trained model mounted inside a Docker container, building a simple web app and enabling communication through the gRPC interface.
 
 ## Model Training 🧠
 Model training is described through two jupyter notebooks based on the use cases:
@@ -26,12 +26,13 @@ Communication between docker containers is facilitated using [gRPC](https://grpc
 
 ### Service
 The classification service container receives gRPC calls, invokes the classification model and returns the class confidence and the label.
+* `make service` - will build a classification service container
 
 ### Web App
 In our case, UI is a simple Streamlit application. "Streamlit is an open-source Python library that makes it easy to create and share beautiful, custom web apps for machine learning and data science." [\[1\]](https://docs.streamlit.io/)
+* `make webapp` - will build a web interface container
 
 ### How to deploy the model?
-* `make service` - will build a classification service container
-* `make webapp` - will build a web interface container
+After successfully building Docker images for [service](https://github.com/ivanko-94/sentiment-classification/blob/main/Makefile#L15) and [web app](https://github.com/ivanko-94/sentiment-classification/blob/main/Makefile#L9):
 * `make up` - will start both containers
 * open `http://localhost:8501` and try to classify customer reviews.
