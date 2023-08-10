@@ -19,9 +19,9 @@ There are two entities:
 
 Model training is described through two jupyter notebooks based on the use cases:
 
-*  `[train_sentiment.ipynb](https://github.com/ivanko-94/sentiment-classification/blob/main/train_sentiment.ipynb)` - Describes how a transformer can be trained to classify customer reviews. Products of this training are used in the deployment section
+*  [train_sentiment.ipynb](https://github.com/ivanko-94/sentiment-classification/blob/main/train_sentiment.ipynb) - Describes how a transformer can be trained to classify customer reviews. Products of this training are used in the deployment section
 
-*  `[train_sms_spam.ipynb](https://github.com/ivanko-94/sentiment-classification/blob/main/train_sms_spam.ipynb)` - Investigates sms spam classification use case. It is not as documented as the sentiment analysis and is used only to investigate SMS spam classification feasibility.
+*  [train_sms_spam.ipynb](https://github.com/ivanko-94/sentiment-classification/blob/main/train_sms_spam.ipynb) - Investigates sms spam classification use case. It is not as documented as the sentiment analysis and is used only to investigate SMS spam classification feasibility.
 
   
 
@@ -47,7 +47,7 @@ The support code for sentiment classification is released as a docker image, whe
 
 ### Communication
 
-Communication between docker containers is facilitated using [gRPC](https://grpc.io/), which is suitable for [Python integration](https://grpc.io/docs/languages/python/quickstart/). A simple communication service is defined in .proto files and the python interface is generated automatically. If using Intel platforms, command: `[make generated](https://github.com/ivanko-94/sentiment-classification/blob/main/Makefile#L9C5-L9C5)` automatically generates interface. If working with M1 Macs, I've uploaded the generated proto files.
+Communication between docker containers is facilitated using [gRPC](https://grpc.io/), which is suitable for [Python integration](https://grpc.io/docs/languages/python/quickstart/). A simple communication service is defined in .proto files and the python interface is generated automatically. If using Intel platforms, command: [make generated](https://github.com/ivanko-94/sentiment-classification/blob/main/Makefile#L9C5-L9C5) automatically generates interface. If working with M1 Macs, I've uploaded the generated proto files.
 
   
 
@@ -55,7 +55,7 @@ Communication between docker containers is facilitated using [gRPC](https://grpc
 
 The classification service container receives gRPC calls, invokes the classification model and returns the class confidence and the label. The source code for the classification service is split into [technology code](https://github.com/ivanko-94/sentiment-classification/blob/main/text_classification/classifier.py#L12), which facilitates training and inference, and the [service code](https://github.com/ivanko-94/sentiment-classification/blob/main/text_classification/service.py#L14), which serves as a wrapper interface. The split is done to follow the single responsibility principle and functional code decomposition.
 
-*  `[make service](https://github.com/ivanko-94/sentiment-classification/blob/main/Makefile#L15)` - will build a classification service container
+*  [make service](https://github.com/ivanko-94/sentiment-classification/blob/main/Makefile#L15) - will build a classification service container
 
   
 
@@ -63,7 +63,7 @@ The classification service container receives gRPC calls, invokes the classifica
 
 In our case, UI is a simple Streamlit application. "Streamlit is an open-source Python library that makes it easy to create and share beautiful, custom web apps for machine learning and data science." [\[1\]](https://docs.streamlit.io/)
 
-*  `[make webapp](https://github.com/ivanko-94/sentiment-classification/blob/main/Makefile#L18)` - will build a web interface container
+*  [make webapp](https://github.com/ivanko-94/sentiment-classification/blob/main/Makefile#L18) - will build a web interface container
 
   
 
@@ -71,7 +71,7 @@ In our case, UI is a simple Streamlit application. "Streamlit is an open-source 
 
 After successfully building Docker images for [service](https://github.com/ivanko-94/sentiment-classification/blob/main/Makefile#L15) and [web app](https://github.com/ivanko-94/sentiment-classification/blob/main/Makefile#L9):
 
-*  `[make up](https://github.com/ivanko-94/sentiment-classification/blob/main/Makefile#L21)` - will start both containers
+*  [make up](https://github.com/ivanko-94/sentiment-classification/blob/main/Makefile#L21) - will start both containers
 
 * open `http://localhost:8501` and try to classify customer reviews.
 
