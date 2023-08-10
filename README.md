@@ -39,4 +39,4 @@ After successfully building Docker images for [service](https://github.com/ivank
 
 Once docker containers successfully start, the application will look like the screenshot below.
 
-![Web App screenshot](https://github.com/ivanko-94/sentiment-classification/blob/sentiment-classification-service/figures/app_screenshot.png)
+![Web App screenshot](https://github.com/ivanko-94/sentiment-classification/blob/main/figures/app_screenshot.png)
